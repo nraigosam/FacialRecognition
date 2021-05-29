@@ -14,8 +14,11 @@ for cl in myList:
     curImg = cv2.imread(f'{path}/{cl}')
     images.append(curImg)
     classNames.append(os.path.splitext(cl)[0])
+    with open('dataset_names.dat', 'wb') as f:
+        pickle.dump(classNames, f)
 
 def findEncodings(images):
+    print("start")
     encodeList = []
     for img in images:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -25,5 +28,5 @@ def findEncodings(images):
         pickle.dump(encodeList, f)
 
 
-findEncodings(images)
 
+findEncodings(images)
